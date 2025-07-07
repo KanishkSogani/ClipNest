@@ -34,16 +34,47 @@ function Register() {
 
       if (!response.ok) {
         throw new Error(data.error || "Registration failed");
-
-        console.log(data);
-        router.push("/login");
       }
+      console.log(data);
+      router.push("/login");
     } catch (error) {
       console.error("Registration error: ", error);
     }
   };
 
-  return <div>Register</div>;
+  return (
+    <div>
+      <h1>Register</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="email"
+          value={email}
+          required={true}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="Password"
+          placeholder="Password"
+          value={password}
+          required={true}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="Password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          required={true}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+      </form>
+      <button type="submit">Register</button>
+      <div>
+        <p>Already have an account?</p>
+        <a href="/login">Login</a>
+      </div>
+    </div>
+  );
 }
 
 export default Register;
